@@ -1,9 +1,9 @@
 local numcheck = {}
 
-function numcheck:positive(num)
+function numcheck:IsPositive(num)
 	if num then
         if type(num) ~= "number" then
-            return nil
+            error("Argument received is not the type 'number'")
         end
 
         if num < 0 then
@@ -18,10 +18,10 @@ function numcheck:positive(num)
     end
 end
 
-function numcheck:biggest(table)
+function numcheck:Biggest(table)
     local biggestNum = nil
     if type(table) ~= "table" then
-        return nil
+        error("Argument received is not the type 'table'")
     end
 
     for k, v in pairs(table) do
@@ -40,10 +40,10 @@ function numcheck:biggest(table)
     return biggestNum
 end
 
-function numcheck:smallest(table)
+function numcheck:Smallest(table)
     local smallestNum = nil
     if type(table) ~= "table" then
-        return nil
+        error("Argument received is not the type 'table'")
     end
 
     for k, v in pairs(table) do
@@ -62,18 +62,18 @@ function numcheck:smallest(table)
     return smallestNum
 end
 
-function numcheck:round(num)
+function numcheck:Round(num)
     if type(num) ~= "number" then
-        return nil
+        error("Argument received is not the type 'number'")
     end
 
-    if numcheck:positive(num) then
+    if numcheck:IsPositive(num) then
         if num - math.floor(num) < 0.5 then
             return math.floor(num)
         else
             return math.ceil(num)
         end
-    elseif not numcheck:positive(num) then
+    elseif not numcheck:IsPositive(num) then
         if (num * -1) + math.ceil(num) > 0.5 then
             return math.floor(num)
         else
@@ -81,6 +81,16 @@ function numcheck:round(num)
         end
     else
         error("The function 'numcheck:positive()' returns values other than true or false")
+    end
+end
+
+function numcheck:ToPositive(num)
+    if type(num) ~= "number" then
+        error("Argument received is not the type 'number'")
+    end
+
+    if not numcheck:IsPositive(num) then
+        return num * -1
     end
 end
 
