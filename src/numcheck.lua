@@ -92,6 +92,7 @@ function numcheck:ToPositive(num)
     if not numcheck:IsPositive(num) then
         return num * -1
     end
+    return num
 end
 
 return numcheck
