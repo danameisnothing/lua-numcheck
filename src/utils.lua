@@ -101,4 +101,22 @@ function utils:GetApproxTick()
     return start + os.clock()
 end
 
+function utils:Wait(second)
+    if second ~= nil then
+        if type(second) ~= "number" then
+            error("Argument received is not the type 'number'")
+        end
+    
+        local target = utils:GetApproxTick() + second
+        while utils:GetApproxTick() < target do
+            -- do nothing
+        end
+    else
+        local target = utils:GetApproxTick() + 0.01
+        while utils:GetApproxTick() < target do
+            -- do nothing
+        end
+    end
+end
+
 return utils
