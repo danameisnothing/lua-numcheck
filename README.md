@@ -1,2 +1,2 @@
-# lua-numcheck
-A Lua module for checking numbers
+# lua-utils
+A Lua module to make stuff easier i guess 
