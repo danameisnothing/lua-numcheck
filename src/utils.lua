@@ -26,14 +26,14 @@ function utils:Biggest(table)
         error("Argument received is not the type 'table'")
     end
 
-    for k, v in pairs(table) do
-        if type(v) == "number" then
-            if not biggestNum and k == 1 then
-                biggestNum = v
+    for _k, _v in pairs(table) do
+        if type(_v) == "number" then
+            if not biggestNum and _k == 1 then
+                biggestNum = _v
                 -- no continue statement :(
             end
-            if biggestNum < v then
-                biggestNum = v
+            if biggestNum < _v then
+                biggestNum = _v
             end
         else
             return nil
@@ -48,14 +48,14 @@ function utils:Smallest(table)
         error("Argument received is not the type 'table'")
     end
 
-    for k, v in pairs(table) do
-        if type(v) == "number" then
-            if not smallestNum and k == 1 then
-                smallestNum = v
+    for _k, _v in pairs(table) do
+        if type(_v) == "number" then
+            if not smallestNum and _k == 1 then
+                smallestNum = _v
                 -- no continue statement :(
             end
-            if smallestNum > v then
-                smallestNum = v
+            if smallestNum > _v then
+                smallestNum = _v
             end
         else
             return nil
@@ -102,7 +102,7 @@ function utils:GetApproxTick()
 end
 
 function utils:Wait(second)
-    if second ~= nil then
+    if second ~= nil and second > 0 then
         if type(second) ~= "number" then
             error("Argument received is not the type 'number'")
         end
@@ -110,13 +110,54 @@ function utils:Wait(second)
         local target = utils:GetApproxTick() + second
         while utils:GetApproxTick() < target do
             -- do nothing
-        end
+        end 
     else
         local target = utils:GetApproxTick() + 0.01
         while utils:GetApproxTick() < target do
             -- do nothing
         end
     end
+end
+
+function utils:ToFormattedHour(num)
+    warn("Broken maybe")
+    if type(num) ~= "number" then
+        error("Argument received is not the type 'number'")
+    end
+
+    if utils:ToPositive(num) then
+        if num >= 60 then
+            return math.floor(num) .. ":" .. math
+        end
+    else
+        error("Unimplemented")
+    end
+end
+
+function utils:DebugPrintTable(table)
+    if type(table) ~= "table" then
+        error("Argument received is not the type 'table'")
+    end
+
+    for _k, _v in pairs(table) do
+        print(_v)
+    end
+    return true
+end
+
+function utils:TruncateSpace(str)
+    if type(str) ~= "string" then
+        error("Argument received is not the type 'string'")
+    end
+
+    local parsed = {}
+    for _i = 1, string.len(str) do
+        local _pSub = string.sub(str, _i, _i)
+        if _pSub ~= " " then
+            table.insert(parsed, _pSub)
+        end
+    end
+	return parsed
 end
 
 return utils
