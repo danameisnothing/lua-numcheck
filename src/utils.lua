@@ -2,6 +2,7 @@ local utils = {}
 
 local start = os.time() + 1
 
+-- Returns true if the number is positive, and false if it's not
 function utils:IsPositive(num)
 	if num then
         if type(num) ~= "number" then
@@ -20,6 +21,7 @@ function utils:IsPositive(num)
     end
 end
 
+-- Returns the biggest number in a table
 function utils:Biggest(table)
     local biggestNum = nil
     if type(table) ~= "table" then
@@ -42,6 +44,7 @@ function utils:Biggest(table)
     return biggestNum
 end
 
+-- Returns the smallest number in a table
 function utils:Smallest(table)
     local smallestNum = nil
     if type(table) ~= "table" then
@@ -64,6 +67,7 @@ function utils:Smallest(table)
     return smallestNum
 end
 
+-- Rounds the number to the nearest whole number
 function utils:Round(num)
     if type(num) ~= "number" then
         error("Argument received is not the type 'number'")
@@ -86,6 +90,7 @@ function utils:Round(num)
     end
 end
 
+-- Returns the number in positive form
 function utils:ToPositive(num)
     if type(num) ~= "number" then
         error("Argument received is not the type 'number'")
@@ -97,10 +102,12 @@ function utils:ToPositive(num)
     return num
 end
 
+-- Returns the approximate amount of time in seconds since the unix epoch according to this device's start time and the cpu time used by the program
 function utils:GetApproxTick()
     return start + os.clock()
 end
 
+-- Yields the current thread until the specified amount of time in seconds have elapsed
 function utils:Wait(second)
     if second ~= nil and second > 0 then
         if type(second) ~= "number" then
@@ -119,6 +126,7 @@ function utils:Wait(second)
     end
 end
 
+-- Deprecated
 function utils:ToFormattedHour(num)
     warn("Broken maybe")
     if type(num) ~= "number" then
@@ -134,6 +142,7 @@ function utils:ToFormattedHour(num)
     end
 end
 
+-- Prints the contents of a table
 function utils:DebugPrintTable(table)
     if type(table) ~= "table" then
         error("Argument received is not the type 'table'")
@@ -145,6 +154,7 @@ function utils:DebugPrintTable(table)
     return true
 end
 
+-- Truncates the string into a table
 function utils:TruncateSpace(str)
     if type(str) ~= "string" then
         error("Argument received is not the type 'string'")
