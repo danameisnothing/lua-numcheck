@@ -149,23 +149,20 @@ function utils:DebugPrintTable(table)
     end
 
     for _k, _v in pairs(table) do
-        print(_v)
+        print("Index " .. tostring(_k) .. " : " .. tostring(_v))
     end
     return true
 end
 
--- Truncates the string into a table
+-- Truncates the string into a table, Help from : https://stackoverflow.com/questions/41463421/lua-split-string-by-semicolon
 function utils:TruncateSpace(str)
     if type(str) ~= "string" then
         error("Argument received is not the type 'string'")
     end
 
     local parsed = {}
-    for _i = 1, string.len(str) do
-        local _pSub = string.sub(str, _i, _i)
-        if _pSub ~= " " then
-            table.insert(parsed, _pSub)
-        end
+    for token in string.gmatch(str, "[^ ]+") do
+        table.insert(parsed, token)
     end
 	return parsed
 end
